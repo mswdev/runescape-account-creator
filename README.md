@@ -24,7 +24,7 @@ account.create(two_captcha_api_key).then(response => {
 });
 ```
 
-The request returns the account data as JSON. The `response` JSON element returns `ACCOUNT_CREATED`, `INVALID_CREDENTIALS` and `BAD_CAPTCHA` depending on the response.
+The request returns the account data as JSON. The `response` JSON element returns `ACCOUNT_CREATED`, `INVALID_CREDENTIALS` or `BAD_CAPTCHA` depending on the response.
 ```JSON
 {
 	"email": "example@gmail.com",
