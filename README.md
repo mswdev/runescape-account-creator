@@ -24,6 +24,8 @@ account.create(two_captcha_api_key).then(response => {
 });
 ```
 
+See [examples.js](https://github.com/Sphiinx/runescape-account-creator/blob/master/examples/examples.js) for more examples.
+
 ### Parameters
 - `two_captcha_api_key` Your [2Captcha](https://2captcha.com/) API key.
   - Required: Yes
