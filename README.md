@@ -24,6 +24,16 @@ account.create(two_captcha_api_key).then(response => {
 });
 ```
 
+The request returns the account data as JSON. The `response` JSON element returns `ACCOUNT_CREATED`, `INVALID_CREDENTIALS` and `BAD_CAPTCHA` depending on the response.
+```JSON
+{
+	"email": "example@gmail.com",
+	"password": "password",
+	"proxy": "",
+	"response": "ACCOUNT_CREATED"
+}
+```
+
 See [examples.js](https://github.com/Sphiinx/runescape-account-creator/blob/master/examples/examples.js) for more examples.
 
 ### Parameters
