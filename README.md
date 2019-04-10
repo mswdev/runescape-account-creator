@@ -3,7 +3,7 @@
 ![](https://discordapp.com/api/guilds/173837867976622082/widget.png?style=shield) [![npm](https://img.shields.io/npm/v/runescape-account-creator.svg?style=flat-square)](https://www.npmjs.com/package/runescape-account-creator) ![GitHub](https://img.shields.io/github/license/sphiinx/runescape-account-creator.svg?style=flat-square) 
 
 ## What is Runescape Account Creator?
-Runescape Account Creator is an implementation in JavaScript for Node.js that provides the ability to create accounts for the video game [Old School RuneScape®](https://oldschool.runescape.com/).
+Runescape Account Creator is an implementation in JavaScript for Node.js that provides the ability to create accounts for the video game [RuneScape®](https://runescape.com/).
 
 ## Installation
 Install via [npm](https://www.npmjs.com/package/runescape-account-creator):
