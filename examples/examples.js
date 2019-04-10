@@ -6,6 +6,8 @@ const two_captcha_api_key = 'YOUR_TWO_CAPTCHA_API_KEY';
  * */
 account.create(two_captcha_api_key).then(response => {
     console.log(response)
+}).catch(error => {
+    console.log(error)
 });
 
 
@@ -14,6 +16,8 @@ account.create(two_captcha_api_key).then(response => {
  * */
 account.create(two_captcha_api_key, 'example@gmail.com', 'example_password').then(response => {
     console.log(response)
+}).catch(error => {
+    console.log(error)
 });
 
 
@@ -22,6 +26,8 @@ account.create(two_captcha_api_key, 'example@gmail.com', 'example_password').the
  * */
 account.create(two_captcha_api_key, 'example@gmail.com', 'example_password', 'socks5_ip', 'socks5_port').then(response => {
     console.log(response)
+}).catch(error => {
+    console.log(error)
 });
 
 /**
@@ -29,4 +35,6 @@ account.create(two_captcha_api_key, 'example@gmail.com', 'example_password', 'so
  * */
 account.create(two_captcha_api_key, null, null, 'socks5_ip', 'socks5_port').then(response => {
     console.log(response)
+}).catch(error => {
+    console.log(error)
 });

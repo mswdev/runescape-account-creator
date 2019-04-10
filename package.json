@@ -1,6 +1,25 @@
 {
   "name": "runescape-account-creator",
-  "version": "1.0.0",
+  "version": "1.0.2",
+  "description": "An implementation in JavaScript for Node.js that provides the ability to create accounts for the video game Old School RuneScape®.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+  },
+  "keywords": [
+    "api",
+    "captcha",
+    "two_captcha",
+    "2captcha",
+    "runescape",
+    "osrs",
+    "2007scape",
+    "account creator"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sphiinx/runescape-account-creator"
+  },
   "dependencies": {
     "@infosimples/node_two_captcha": "latest",
     "faker": "latest",
