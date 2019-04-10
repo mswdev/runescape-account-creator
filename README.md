@@ -12,7 +12,7 @@ npm install runescape-account-creator
 ```
 
 ## Usage
-The request is promised based therfore we call `.then()` in order to access the response once it has been recieved.
+The request is [promise](https://evie.gitbook.io/js/promises) based therfore we call `.then()` in order to access the response once it has been recieved.
 ```JavaScript
 const account = require('runescape-account-creator');
 const two_captcha_api_key = 'YOUR_TWO_CAPTCHA_API_KEY';
