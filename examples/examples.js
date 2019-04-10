@@ -10,7 +10,6 @@ account.create(two_captcha_api_key).then(response => {
     console.log(error)
 });
 
-
 /**
  * Creates an account using the two captcha api key and the specified email/password.
  * */
@@ -19,7 +18,6 @@ account.create(two_captcha_api_key, 'example@gmail.com', 'example_password').the
 }).catch(error => {
     console.log(error)
 });
-
 
 /**
  * Creates an account using the two captcha api key, the specified email/password, and the specified socks5 proxy.
