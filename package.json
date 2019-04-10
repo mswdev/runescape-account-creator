@@ -1,0 +1,13 @@
+{
+  "name": "runescape-account-creator",
+  "version": "1.0.0",
+  "dependencies": {
+    "@infosimples/node_two_captcha": "latest",
+    "faker": "latest",
+    "request-promise": "^4.2.4",
+    "socks5-https-client": "latest"
+  },
+  "devDependencies": {
+    "request": "^2.88.0"
+  }
+}
