@@ -27,7 +27,7 @@ class Account {
         return new two_captcha_client(two_captcha_api_key, {
             timeout: 80000,
             polling: 5000,
-            throwErrors: false
+            throwErrors: true
         });
     }
 
@@ -41,7 +41,7 @@ class Account {
                 socksHost: socks_ip,
                 socksPort: socks_port,
                 socksUsername: socks_username,
-                socksPassword: socks_password,
+                socksPassword: socks_password
             },
             form: {
                 email1: supplier._getEmail(email),
@@ -52,7 +52,7 @@ class Account {
                 month: supplier._getRandomMonth(),
                 year: supplier._getRandomYear(),
                 'create-submit': 'create',
-                'g-recaptcha-response': google_recaptcha_key,
+                'g-recaptcha-response': google_recaptcha_key
             }
         })
     }
@@ -62,7 +62,7 @@ class Account {
             googlekey: google_recaptcha_api_key,
             pageurl: runescape_create_account_url,
             proxy: proxy_url,
-            proxytype: 'SOCKS5',
+            proxytype: 'SOCKS5'
         })
     }
 
@@ -75,7 +75,7 @@ class Account {
             {
                 'email': email,
                 'password': password,
-                'proxy': proxy_url,
+                'proxy': proxy_url
             };
         if (this._validateResponse(body.toString(), constants.success)) {
             account_details['response'] = 'ACCOUNT_CREATED';
