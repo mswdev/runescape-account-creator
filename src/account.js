@@ -7,20 +7,19 @@ const google_recaptcha_api_key = '6Lcsv3oUAAAAAGFhlKrkRb029OHio098bbeyi_Hv';
 const runescape_create_account_url = 'https://secure.runescape.com/m=account-creation/create_account';
 
 class Account {
-    static create(two_captcha_api_key, email, password, socks_ip, socks_port, socks_username, socks_password) {
-        let proxy_url = supplier._formatProxy(socks_ip, socks_port, socks_username, socks_password);
-        let get_email = supplier._getEmail(email);
-        let get_password = supplier._getPassword(password);
+    static async create(two_captcha_api_key, email, password, socks_ip, socks_port, socks_username, socks_password) {
+        try {
+            let proxy_url = supplier._formatProxy(socks_ip, socks_port, socks_username, socks_password);
+            let get_email = supplier._getEmail(email);
+            let get_password = supplier._getPassword(password);
 
-        return this._sendRecaptchaPost(two_captcha_api_key, proxy_url).then(response => {
-            return this._sendAccountPost(response.text, get_email, get_password, socks_ip, socks_port, socks_username, socks_password).then(body => {
-                return this._formatResponse(body, get_email, get_password, proxy_url)
-            }).catch(function (error) {
-                return error;
-            });
-        }).catch(function (error) {
+            let recaptcha_post = await this._sendRecaptchaPost(two_captcha_api_key, proxy_url);
+            let account_post = await this._sendAccountPost(recaptcha_post.text, get_email, get_password, socks_ip, socks_port, socks_username, socks_password);
+
+            return this._formatResponse(account_post, get_email, get_password, proxy_url)
+        } catch (error) {
             return error;
-        });
+        }
     }
 
     static _getClient(two_captcha_api_key) {
