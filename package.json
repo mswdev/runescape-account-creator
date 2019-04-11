@@ -1,6 +1,6 @@
 {
   "name": "runescape-account-creator",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "An implementation in JavaScript for Node.js that provides the ability to create accounts for the video game Old School RuneScape®.",
   "main": "index.js",
   "scripts": {
