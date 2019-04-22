@@ -1,1 +1,1 @@
-module.exports = require('./src/account');
+module.exports = require('./src/runescape')
