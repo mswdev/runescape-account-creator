@@ -3,7 +3,7 @@ const faker = require('faker');
 
 class Supplier {
     static _getPassword(password) {
-        if (password == null) {
+        if (!password) {
             return faker.internet.userName().replace(/[^A-Za-z0-9+]/g, '')
         }
 
@@ -11,7 +11,7 @@ class Supplier {
     }
 
     static _getEmail(email) {
-        if (email == null) {
+        if (!email) {
             return faker.internet.email()
         }
 
@@ -19,18 +19,18 @@ class Supplier {
     }
 
     static _getSocksAgent(socks_ip, socks_port) {
-        if (socks_ip == null || socks_port == null)
+        if (!socks_ip || !socks_port)
             return null;
 
         return socks_agent;
     }
 
     static _formatProxy(socks_ip, socks_port, socks_username, socks_password) {
-        if (socks_ip == null || socks_port == null) {
+        if (!socks_ip || !socks_port) {
             return ''
         }
 
-        if (socks_username == null || socks_password == null) {
+        if (!socks_username || !socks_password) {
             return socks_ip + ':' + socks_port
         }
 
