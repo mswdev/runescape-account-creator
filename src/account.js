@@ -70,6 +70,7 @@ class Account {
     }
 
     static _formatResponse(body, email, password, proxy_url) {
+        console.log(body.toString());
         let account_details =
             {
                 'email': email,
