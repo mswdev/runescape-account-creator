@@ -5,6 +5,7 @@ module.exports = Object.freeze({
         'Your password contains invalid characters.'
     ],
     success: [
-        'You can now begin your adventure with your new account.'
+        'You can now begin your adventure with your new account.',
+        'An error has occurred and it has not been possible to create your account.' // Possibly temporary.
     ]
 });
