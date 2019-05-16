@@ -1,38 +1,70 @@
-const account = require('../src/account');
-const two_captcha_api_key = 'YOUR_TWO_CAPTCHA_API_KEY';
+const { buildAccountCreator } = require('../index')
+const twoCaptchaApiKey = 'YOUR_TWO_CAPTCHA_API_KEY'
+
+const accountCreator = buildAccountCreator(twoCaptchaApiKey)
 
 /**
- * Creates an account using the two captcha api key and generating a random email/password.
- * */
-account.create(two_captcha_api_key).then(response => {
-    console.log(response)
-}).catch(error => {
+ * Creates an account by generating a random email/password and birthday.
+ */
+function withRandomCredentials () {
+  accountCreator.register().then(({ credentials, birthday }) => {
+    console.log(`We registered ${credentials.email} with ${credentials.password}. Birthday: ${birthday}`)
+  }).catch(error => {
     console.log(error)
-});
+  })
+}
+
+// Uncomment the line below to run the example
+// withRandomCredentials()
 
 /**
- * Creates an account using the two captcha api key and the specified email/password.
- * */
-account.create(two_captcha_api_key, 'example@gmail.com', 'example_password').then(response => {
+ * Creates an account using the specified email/password and generating a birthday.
+ */
+function withSpecifiedCredentials () {
+  accountCreator.register({
+    email: 'example@gmail.com',
+    password: 'examplepassword'
+  }).then(response => {
     console.log(response)
-}).catch(error => {
+  }).catch(error => {
     console.log(error)
-});
+  })
+}
+
+// withSpecifiedCredentials()
 
 /**
- * Creates an account using the two captcha api key, the specified email/password, and the specified socks5 proxy.
- * */
-account.create(two_captcha_api_key, 'example@gmail.com', 'example_password', 'socks5_ip', 'socks5_port').then(response => {
+ * Creates an account using the specified email/password/birthday,
+ * and the specified socks5 proxy.
+ */
+function withProxy () {
+  accountCreator.register({
+    // email: 'example@gmail.com',
+    password: 'examplepassword',
+    proxy: 'socks5://username:password@127.0.0.1:1080'
+  }).then(response => {
     console.log(response)
-}).catch(error => {
+  }).catch(error => {
     console.log(error)
-});
+  })
+}
+
+// withProxy()
 
 /**
- * Creates an account using the two captcha api key, generating a random email/password and the specified socks5 proxy.
- * */
-account.create(two_captcha_api_key, null, null, 'socks5_ip', 'socks5_port').then(response => {
-    console.log(response)
-}).catch(error => {
-    console.log(error)
-});
+ * Big fan of async/await? We've got you covered!
+ */
+async function example1 () {
+  try {
+    const { credentials, birthday } = await accountCreator.register({
+      // email: 'example@example.com',
+      password: 'pass43594word'
+    })
+
+    console.log(`We registered an account! creds=(${credentials}) bday=${birthday.toLocaleString()}`)
+  } catch (e) {
+    console.error('Something went wrong with our registration attempt!', e)
+  }
+}
+
+(async () => { await example1() })()

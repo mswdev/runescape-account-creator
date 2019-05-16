@@ -3,7 +3,19 @@
   "version": "1.1.8",
   "description": "An implementation in JavaScript for Node.js that provides the ability to create accounts for the video game Old School RuneScape®.",
   "main": "index.js",
+  "directories": {
+    "lib": "src",
+    "example": "examples"
+  },
+  "files": [
+    ".env.example",
+    "index.js",
+    "examples/**/*.js",
+    "src/**/*.js"
+  ],
   "scripts": {
+    "docs": "node_modules/.bin/jsdoc -c jsdoc.json",
+    "lint": "eslint src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -21,14 +33,26 @@
     "url": "https://github.com/Sphiinx/runescape-account-creator"
   },
   "dependencies": {
-    "@infosimples/node_two_captcha": "latest",
-    "faker": "latest",
+    "@hapi/joi": "^15.0.3",
+    "@infosimples/node_two_captcha": "^1.0.2",
+    "cheerio": "^1.0.0-rc.3",
+    "debug": "^4.1.1",
+    "dotenv": "^7.0.0",
+    "faker": "^4.1.0",
+    "request": "^2.88.0",
     "request-promise": "^4.2.4",
-    "socks5-https-client": "latest"
-  },
-  "devDependencies": {
-    "request": "^2.88.0"
+    "socks5-https-client": "^1.2.1"
   },
   "author": "Sphiinx",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "jsdoc": "^3.6.2",
+    "standard": "^12.0.1"
+  }
 }
