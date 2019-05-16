@@ -53,7 +53,7 @@ class AccountCreator {
    * @param {Date} options.birthday Birthday for the account. do not use a Date < 13 years before today. defaults to generating a date in the past with Faker
    * @param {String} options.recaptchaToken If provided, we do not try to fetch the token from 2Captcha's API
    */
-  async register (options = ({
+  async register ({
     // string
     email,
     // string
@@ -62,7 +62,7 @@ class AccountCreator {
     birthday,
     userAgent,
     recaptchaToken
-  })) {
+  }) {
     const form = new RegisterAccountForm(this.config.runescape.registerUrl)
     form.email = email || faker.internet.email()
     form.password = password || faker.internet.password(16, true)
@@ -90,11 +90,15 @@ class AccountCreator {
    * @returns Promise<String> Promise that resolves a token upon completion
    */
   async fetchRecaptchaToken () {
-    return buildTwoCaptchaSolver(this.config.twoCaptcha)
+    const captcha = await buildTwoCaptchaSolver(this.config.twoCaptcha)
       .submit(
         this.config.runescape.registerUrl,
         this.config.runescape.siteKey
       )
+
+    debug('Received 2captcha response', captcha)
+
+    return captcha.text
   }
 }
 

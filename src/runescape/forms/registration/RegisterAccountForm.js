@@ -1,6 +1,6 @@
 // const url = require('url')
 const request = require('request-promise')
-const debug = require('debug')('account-creator:register-form-v2')
+const debug = require('debug')('account-creator:register-form')
 // const httpsSocksAgent = require('socks5-https-client/lib/Agent')
 const detectFormErrors = require('./errors')
 const validateRegistrationForm = require('./validation')
@@ -144,9 +144,7 @@ class RegisterAccountForm {
 
     try {
       debug('Submitting registration form', form)
-      // XXX(kylestev): We set submitted to true so we don't re-use the
-      // captcha token
-      this.submitted = true
+      this.submitted = form
       const responseHtml = await request(options)
 
       debug('Checking for form errors in response HTML')

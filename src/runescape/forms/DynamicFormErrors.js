@@ -9,7 +9,8 @@ const cheerio = require('cheerio')
  */
 function findFormErrorElements (html) {
   const $ = cheerio.load(html)
-  const warnings = $('p.m-callout--type-warning').map((_, warning) => {
+  const warnings = $('p.m-callout--type-warning').map((_, el) => {
+    const warning = $(el)
     const inputName = warning.parent().find('input').attr('name')
     const text = warning.contents().not('a, strong').text().trim()
 

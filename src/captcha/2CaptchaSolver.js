@@ -48,7 +48,7 @@ class TwoCaptchaSolver {
    * @param {String} pageUrl Web page to get recaptcha token for
    * @param {String} siteKey reCAPTCHA siteKey value for the specified page
    * @param {String} proxyUrl
-   * @returns {Promise<string>} reCAPTCHA response token
+   * @returns {Promise<Object>} captcha response
    */
   async submit (pageUrl, siteKey, proxyUrl = null) {
     const config = {

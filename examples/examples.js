@@ -59,7 +59,7 @@ function withProxy () {
 async function example1 () {
   try {
     const { credentials, birthday } = await accountCreator.register({
-      email: 'example@example.com',
+      // email: 'example@example.com',
       password: 'pass43594word'
     })
 
