@@ -100,7 +100,7 @@ class RegisterAccountForm {
         username: this.submitted.email1,
         password: this.submitted.password1
       },
-      proxy: url.format(this.proxy, { search: false, fragment: false }),
+      proxy: this.proxy === null ? null : url.format(this.proxy, { search: false, fragment: false }),
       meta: {
         userAgent: this.userAgent
       }
