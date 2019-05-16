@@ -1,4 +1,4 @@
-// const { formatProxyUrl } = require('../utils')
+const { formatProxyUrl } = require('../utils')
 const debug = require('debug')('account-creator:captcha')
 // eslint-disable-next-line no-unused-vars
 const TwoCaptchaClient = require('@infosimples/node_two_captcha')
@@ -57,19 +57,19 @@ class TwoCaptchaSolver {
     }
 
     if (proxyUrl !== null) {
-      throw new Error('Proxies not currently supported')
-      // const proxyOptions = {
-      //   username: proxyUrl.username,
-      //   password: proxyUrl.password,
-      //   ip: proxyUrl.hostname,
-      //   port: proxyUrl.port
-      // }
+      debug('proxy url', proxyUrl)
+      const proxyOptions = {
+        username: proxyUrl.username,
+        password: proxyUrl.password,
+        ip: proxyUrl.hostname,
+        port: proxyUrl.port
+      }
 
-      // const proxyType = proxyUrl.protocol.replace(/:$/, '').toUpperCase()
+      const proxyType = proxyUrl.protocol.replace(/:$/, '').toUpperCase()
 
-      // debug('Using proxy', { proxyType, ...proxyOptions })
-      // config.proxyurl = formatProxyUrl(proxyOptions)
-      // config.proxytype = proxyType
+      debug('Using proxy', { proxyType, ...proxyOptions })
+      config.proxyurl = formatProxyUrl(proxyOptions)
+      config.proxytype = proxyType
     }
 
     debug('Submitting captcha solving request', config)

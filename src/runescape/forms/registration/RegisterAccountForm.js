@@ -1,7 +1,7 @@
-// const url = require('url')
+const url = require('url')
 const request = require('request-promise')
 const debug = require('debug')('account-creator:register-form')
-// const httpsSocksAgent = require('socks5-https-client/lib/Agent')
+const httpsSocksAgent = require('socks5-https-client/lib/Agent')
 const detectFormErrors = require('./errors')
 const validateRegistrationForm = require('./validation')
 
@@ -32,8 +32,11 @@ class RegisterAccountForm {
      */
     this.errors = []
     /**
-     * Not currently supported
-     * @deprecated not ready for use just yet
+     * The proxy to use when registering for the account.
+     *
+     * Note: only SOCKSv5 proxies are supported currently.
+     *
+     * @type {url.URL}
      */
     this.proxy = null
     /**
@@ -97,7 +100,7 @@ class RegisterAccountForm {
         username: this.submitted.email1,
         password: this.submitted.password1
       },
-      proxy: this.proxy,
+      proxy: url.format(this.proxy, { search: false, fragment: false }),
       meta: {
         userAgent: this.userAgent
       }
@@ -108,14 +111,10 @@ class RegisterAccountForm {
    * Submit the form and attempt to register the account.
    *
    * @returns {Object} The submitted form's value at time of submission
-   * @throws {ValidationError}
    * @throws {FormInputError}
    */
   async submit () {
     if (this.submitted) throw new Error('Already submitted this form')
-
-    const result = await this.validate()
-    debug('validation result', result)
 
     if (!this.recaptchaToken) {
       throw new Error('recaptchaToken was not set!')
@@ -133,13 +132,17 @@ class RegisterAccountForm {
     }
 
     if (this.proxy !== null) {
-      throw new Error('proxy disabled')
-      // debug('Using proxy:', url.format(this.proxy, {
-      //   search: false,
-      //   fragment: false
-      // }))
-      // options.agentClass = httpsSocksAgent
-      // options.agentOptions = this.proxy
+      debug('Using proxy:', url.format(this.proxy, {
+        search: false,
+        fragment: false
+      }))
+      options.agentClass = httpsSocksAgent
+      options.agentOptions = {
+        socksUsername: this.proxy.username,
+        socksPassword: this.proxy.password,
+        socksHost: this.proxy.hostname,
+        socksPort: this.proxy.port
+      }
     }
 
     try {

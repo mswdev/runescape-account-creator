@@ -1,6 +1,7 @@
 require('dotenv').config()
 const debug = require('debug')('account-creator:main')
 
+const url = require('url')
 const faker = require('faker')
 
 const { buildTwoCaptchaSolver } = require('../captcha/2CaptchaSolver')
@@ -51,7 +52,9 @@ class AccountCreator {
    * @param {String} options.email Email to use for the account. defaults to generating an email with Faker
    * @param {String} options.password Password to use for the account. defaults to generating a password with Faker
    * @param {Date} options.birthday Birthday for the account. do not use a Date < 13 years before today. defaults to generating a date in the past with Faker
+   * @param {String} options.proxy Optional. Proxy URI formatted string. ex: socks5://[username:password]@127.0.0.1:1234
    * @param {String} options.recaptchaToken If provided, we do not try to fetch the token from 2Captcha's API
+   * @throws {ValidationError}
    */
   async register ({
     // string
@@ -60,6 +63,7 @@ class AccountCreator {
     password,
     // Date
     birthday,
+    proxy,
     userAgent,
     recaptchaToken
   }) {
@@ -70,11 +74,18 @@ class AccountCreator {
 
     form.birthday = birthday || faker.date.between('1985-01-01', '2001-12-31')
 
+    debug('validation result', await form.validate())
+
+    if (proxy) {
+      form.proxy = new url.URL(proxy)
+      debug('parsed proxy URL', form.proxy)
+    }
+
     if (typeof recaptchaToken === 'string') {
       form.recaptchaToken = recaptchaToken
     } else {
       debug('No reCAPTCHA token passed. Fetching one from 2Captcha')
-      form.recaptchaToken = await this.fetchRecaptchaToken()
+      form.recaptchaToken = await this.fetchRecaptchaToken(form.proxy)
     }
 
     const registeredAccount = await form.submit()
@@ -89,11 +100,12 @@ class AccountCreator {
    *
    * @returns Promise<String> Promise that resolves a token upon completion
    */
-  async fetchRecaptchaToken () {
+  async fetchRecaptchaToken (proxy = null) {
     const captcha = await buildTwoCaptchaSolver(this.config.twoCaptcha)
       .submit(
         this.config.runescape.registerUrl,
-        this.config.runescape.siteKey
+        this.config.runescape.siteKey,
+        proxy
       )
 
     debug('Received 2captcha response', captcha)

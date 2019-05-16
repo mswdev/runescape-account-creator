@@ -23,7 +23,7 @@ function withRandomCredentials () {
 function withSpecifiedCredentials () {
   accountCreator.register({
     email: 'example@gmail.com',
-    password: 'example_password'
+    password: 'examplepassword'
   }).then(response => {
     console.log(response)
   }).catch(error => {
@@ -34,21 +34,19 @@ function withSpecifiedCredentials () {
 // withSpecifiedCredentials()
 
 /**
- * Not currently supported!
- *
  * Creates an account using the specified email/password/birthday,
  * and the specified socks5 proxy.
  */
 function withProxy () {
-  throw new Error('Not currently supported')
-  // accountCreator.register({
-  //   email: 'example@gmail.com',
-  //   password: 'example_password'
-  // }).then(response => {
-  //   console.log(response)
-  // }).catch(error => {
-  //   console.log(error)
-  // })
+  accountCreator.register({
+    // email: 'example@gmail.com',
+    password: 'examplepassword',
+    proxy: 'socks5://username:password@127.0.0.1:1080'
+  }).then(response => {
+    console.log(response)
+  }).catch(error => {
+    console.log(error)
+  })
 }
 
 // withProxy()
