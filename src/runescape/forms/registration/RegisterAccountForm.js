@@ -97,7 +97,7 @@ class RegisterAccountForm {
     return {
       birthday: this.birthday,
       credentials: {
-        username: this.submitted.email1,
+        email: this.submitted.email1,
         password: this.submitted.password1
       },
       proxy: this.proxy === null ? null : url.format(this.proxy, { search: false, fragment: false }),
