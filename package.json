@@ -1,6 +1,6 @@
 {
   "name": "runescape-account-creator",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "An implementation in JavaScript for Node.js that provides the ability to create accounts for the video game Old School RuneScape®.",
   "main": "index.js",
   "directories": {
@@ -48,7 +48,7 @@
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
