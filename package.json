@@ -2,7 +2,7 @@
   "author": "Sphiinx",
   "license": "MIT",
   "name": "runescape-account-creator",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "An implementation in JavaScript for Node.js that provides the ability to create accounts for the video game Old School RuneScape®.",
   "main": "index.js",
   "directories": {
