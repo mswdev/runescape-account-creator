@@ -67,4 +67,4 @@ async function example1 () {
   }
 }
 
-(async () => { await example1() })()
+//(async () => { await example1() })()

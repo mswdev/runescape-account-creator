@@ -1,7 +1,7 @@
 const url = require('url')
 const request = require('request-promise')
 const debug = require('debug')('account-creator:register-form')
-const httpsSocksAgent = require('socks5-https-client/lib/Agent')
+const httpsSocksAgent = require('socks-proxy-agent')
 const detectFormErrors = require('./errors')
 const validateRegistrationForm = require('./validation')
 
@@ -12,7 +12,7 @@ const validateRegistrationForm = require('./validation')
  */
 class RegisterAccountForm {
   /** @param {String} registerUrl */
-  constructor (registerUrl) {
+  constructor(registerUrl) {
     /**
      * The form object that was submitted.
      *
@@ -65,7 +65,7 @@ class RegisterAccountForm {
     this.recaptchaToken = ''
   }
 
-  get form () {
+  get form() {
     return {
       email1: this.email,
       onlyOneEmail: '1',
@@ -81,7 +81,7 @@ class RegisterAccountForm {
   }
 
   /** @param {Object} */
-  set credentials ({ email, password }) {
+  set credentials({email, password}) {
     this.email = email
     this.password = password
   }
@@ -89,7 +89,7 @@ class RegisterAccountForm {
   /**
    * The created account
    */
-  get account () {
+  get account() {
     if (!this.submitted) {
       return null
     }
@@ -100,7 +100,7 @@ class RegisterAccountForm {
         email: this.submitted.email1,
         password: this.submitted.password1
       },
-      proxy: this.proxy === null ? null : url.format(this.proxy, { search: false, fragment: false }),
+      proxy: this.proxy === null ? null : url.format(this.proxy, {search: false, fragment: false}),
       meta: {
         userAgent: this.userAgent
       }
@@ -113,7 +113,7 @@ class RegisterAccountForm {
    * @returns {Object} The submitted form's value at time of submission
    * @throws {FormInputError}
    */
-  async submit () {
+  async submit() {
     if (this.submitted) throw new Error('Already submitted this form')
 
     if (!this.recaptchaToken) {
@@ -136,13 +136,11 @@ class RegisterAccountForm {
         search: false,
         fragment: false
       }))
-      options.agentClass = httpsSocksAgent
-      options.agentOptions = {
-        socksUsername: this.proxy.username,
-        socksPassword: this.proxy.password,
-        socksHost: this.proxy.hostname,
-        socksPort: this.proxy.port
-      }
+
+      options.agent = new httpsSocksAgent(url.format(this.proxy, {
+        search: false,
+        fragment: false
+      }))
     }
 
     try {
@@ -166,7 +164,7 @@ class RegisterAccountForm {
    * @see {validateRegistrationForm}
    * @returns {Promise}
    */
-  validate () {
+  validate() {
     return validateRegistrationForm(this.form)
   }
 }
