@@ -1,6 +1,8 @@
 {
+  "author": "Sphiinx",
+  "license": "MIT",
   "name": "runescape-account-creator",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "An implementation in JavaScript for Node.js that provides the ability to create accounts for the video game Old School RuneScape®.",
   "main": "index.js",
   "directories": {
@@ -41,10 +43,8 @@
     "faker": "^4.1.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
-    "socks5-https-client": "^1.2.1"
+    "socks-proxy-agent": "^4.0.2"
   },
-  "author": "Sphiinx",
-  "license": "MIT",
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
