@@ -114,7 +114,7 @@ Which will run [jsdoc](https://github.com/jsdoc/jsdoc) and publish the generated
 ## Dependencies
 - [request-promise](https://www.npmjs.com/package/request-promise)
 - [@infosimples/node_two_captcha](https://www.npmjs.com/package/@infosimples/node_two_captcha)
-- [SOCKS5 HTTPS Client](https://www.npmjs.com/package/socks5-https-client)
+- [socks-proxy-agent](https://www.npmjs.com/package/socks-proxy-agent)
 - [faker](https://www.npmjs.com/package/faker)
 - [dotenv](https://www.npmjs.com/package/dotenv)
 - [debug](https://www.npmjs.com/package/debug)
